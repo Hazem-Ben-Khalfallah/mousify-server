@@ -1,5 +1,6 @@
-package com.blacknebula.mousify.server;
+package com.blacknebula.mousify.server.service;
 
+import com.blacknebula.mousify.server.dto.SomeRequest;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -17,7 +18,7 @@ public class MousifyServer {
     public static void main(String[] args) {
         Server server = new Server();
         Kryo kryo = server.getKryo();
-        kryo.register(com.blacknebula.mousify.server.SomeRequest.class);
+        kryo.register(SomeRequest.class);
         server.start();
 
         try {

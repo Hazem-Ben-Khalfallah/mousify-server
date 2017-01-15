@@ -1,5 +1,6 @@
-package com.blacknebula.mousify.server;
+package com.blacknebula.mousify.server.service;
 
+import com.blacknebula.mousify.server.dto.SomeRequest;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.minlog.Log;

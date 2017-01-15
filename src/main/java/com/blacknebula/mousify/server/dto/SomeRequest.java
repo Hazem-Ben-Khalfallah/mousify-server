@@ -1,4 +1,4 @@
-package com.blacknebula.mousify.server;
+package com.blacknebula.mousify.server.dto;
 
 /**
  * @author hazem
