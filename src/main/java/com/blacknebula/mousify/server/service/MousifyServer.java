@@ -13,7 +13,8 @@ import java.io.IOException;
  * @author hazem
  */
 public class MousifyServer {
-    private static int port = 18080;
+    public static int TCP_PORT = 18181;
+    public static int UDP_PORT = 28282;
 
     public static void main(String[] args) {
         Server server = new Server();
@@ -22,8 +23,8 @@ public class MousifyServer {
         server.start();
 
         try {
-            Log.info("Mousify", "Listening on port " + port);
-            server.bind(port);
+            Log.info("Mousify", "Listening on port TCP: " + TCP_PORT + ", UDP: " + UDP_PORT);
+            server.bind(TCP_PORT, UDP_PORT);
 
         } catch (IOException e) {
             Log.error("Mousify", "Error while starting server", e);
@@ -35,6 +36,7 @@ public class MousifyServer {
                 if (object instanceof SomeRequest) {
                     SomeRequest someRequest = (SomeRequest) object;
                     Log.info("Mousify", "Received data: " + someRequest.text);
+                    MouseRobot.test();
                 }
             }
 
@@ -53,7 +55,7 @@ public class MousifyServer {
             @Override
             public void idle(Connection connection) {
                 super.idle(connection);
-                Log.info("Mousify", "Idle");
+                //Log.info("Mousify", "Idle");
             }
         });
     }

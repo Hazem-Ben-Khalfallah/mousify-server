@@ -10,6 +10,10 @@ import java.awt.*;
  */
 public class MouseRobot {
     public static void main(String[] args) {
+        test();
+    }
+
+    static void test() {
         try {
             final Robot robot = new Robot();
             final MouseEvent mouseEvent = new MouseEvent(robot);

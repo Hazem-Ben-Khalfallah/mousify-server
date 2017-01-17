@@ -12,7 +12,6 @@ import java.net.InetAddress;
  * @author hazem
  */
 public class MousifyClient {
-    private static int port = 18080;
 
     public static void main(String[] args) {
         Client client = new Client();
@@ -20,10 +19,11 @@ public class MousifyClient {
         kryo.register(SomeRequest.class);
         new Thread(client).start();
         try {
-            client.connect(5000, InetAddress.getLocalHost(), port);
+            client.connect(5000, InetAddress.getLocalHost(), MousifyServer.TCP_PORT, MousifyServer.UDP_PORT);
         } catch (IOException e) {
             Log.error("Moudify-Client", "Error while connecting", e);
         }
+
 
         SomeRequest request = new SomeRequest();
         request.text = "Here is the request";
