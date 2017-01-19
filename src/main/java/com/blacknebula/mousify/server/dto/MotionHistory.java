@@ -11,12 +11,12 @@ public class MotionHistory {
     private static final int X_THRESHOLD = 20;
 
     public static MotionHistory motionHistory;
-    private int previousX;
-    private int previousY;
+    private int x;
+    private int y;
 
     private MotionHistory(int x, int y) {
-        this.previousX = x;
-        this.previousY = y;
+        this.x = x;
+        this.y = y;
     }
 
     public static MotionHistory getInstance() {
@@ -26,13 +26,20 @@ public class MotionHistory {
         return motionHistory;
     }
 
-    public void updateHistory(int x, int y) {
-        this.previousX = x;
-        this.previousY = y;
+    public void updateHistory(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
     }
 
     public boolean shouldIgnoreMove(MotionRequest motionRequest) {
-        return Math.abs(motionRequest.getX() - previousX) < X_THRESHOLD ||
-                Math.abs(motionRequest.getY() - previousY) < Y_THRESHOLD;
+        return Math.abs(motionRequest.getDx()) < X_THRESHOLD && Math.abs(motionRequest.getDy()) < Y_THRESHOLD;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

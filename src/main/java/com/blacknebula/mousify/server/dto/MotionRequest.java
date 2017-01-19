@@ -13,9 +13,9 @@ import lombok.Setter;
 public class MotionRequest {
     @Getter
     @Setter
-    private int x;
+    private int dx;
 
     @Getter
     @Setter
-    private int y;
+    private int dy;
 }

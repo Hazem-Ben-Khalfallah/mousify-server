@@ -17,7 +17,7 @@ public class MouseRobot {
         try {
             final Robot robot = new Robot();
             final MouseEvent mouseEvent = new MouseEvent(robot);
-            mouseEvent.moveMouse(x, y, 0, 0, 10);
+            mouseEvent.moveMouse(x, y, 0, 0, 0);
         } catch (AWTException e) {
             Log.error("Mousify", "Error while Controlling mouse", e);
         }

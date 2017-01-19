@@ -37,12 +37,13 @@ public class MousifyServer {
                 if (object instanceof MotionRequest) {
                     MotionRequest motionRequest = (MotionRequest) object;
                     if (MotionHistory.getInstance().shouldIgnoreMove(motionRequest)) {
-                        Log.info("Mousify", "Ignore : " + motionRequest.getX() + ", " + motionRequest.getY());
+                        Log.info("Mousify", "Ignore : " + motionRequest.getDx() + ", " + motionRequest.getDy());
                         return;
                     }
-                    MotionHistory.getInstance().updateHistory(motionRequest.getX(), motionRequest.getY());
-                    Log.info("Mousify", "Move to: " + motionRequest.getX() + ", " + motionRequest.getY());
-                    MouseRobot.move(motionRequest.getX(), motionRequest.getY());
+                    Log.info("Mousify", "Move by: " + motionRequest.getDx() + " , " + motionRequest.getDy());
+                    MotionHistory.getInstance().updateHistory(motionRequest.getDx(), motionRequest.getDy());
+                    //Log.info("Mousify", "Move to: " + MotionHistory.getInstance().getX() + ", " + MotionHistory.getInstance().getY());
+                    MouseRobot.move(MotionHistory.getInstance().getX(), MotionHistory.getInstance().getY());
                 }
             }
 
