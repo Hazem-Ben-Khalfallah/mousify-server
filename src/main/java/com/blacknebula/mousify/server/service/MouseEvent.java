@@ -5,7 +5,7 @@ import java.awt.*;
 public class MouseEvent {
     private Robot robot;
 
-    public MouseEvent(Robot robot) {
+    MouseEvent(Robot robot) {
         this.robot = robot;
     }
 
@@ -17,7 +17,11 @@ public class MouseEvent {
         return MouseInfo.getPointerInfo().getLocation().y;
     }
 
-    public void moveMouse(int destX, int destY, int ranX, int ranY, int speed) {
+    void moveMouse(int destX, int destY, int ranX, int ranY, int speed) {
         Mouse.moveMouse(robot, new Point(getCurrentMouseX(), getCurrentMouseY()), new Point(destX, destY), speed, ranX, ranY);
+    }
+
+    void leftClick() {
+        Mouse.leftClick(robot);
     }
 }

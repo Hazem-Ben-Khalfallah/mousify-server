@@ -1,7 +1,8 @@
 package com.blacknebula.mousify.server.service;
 
 import com.blacknebula.mousify.server.dto.MotionHistory;
-import com.blacknebula.mousify.server.dto.MotionRequest;
+import com.blacknebula.mousify.server.event.ClickEvent;
+import com.blacknebula.mousify.server.event.MotionEvent;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -20,7 +21,8 @@ public class MousifyServer {
     public static void main(String[] args) {
         Server server = new Server();
         Kryo kryo = server.getKryo();
-        kryo.register(MotionRequest.class);
+        kryo.register(MotionEvent.class);
+        kryo.register(ClickEvent.class);
         server.start();
 
         try {
@@ -34,16 +36,24 @@ public class MousifyServer {
         server.addListener(new Listener() {
             @Override
             public void received(Connection connection, Object object) {
-                if (object instanceof MotionRequest) {
-                    MotionRequest motionRequest = (MotionRequest) object;
-                    if (MotionHistory.getInstance().shouldIgnoreMove(motionRequest)) {
-                        Log.info("Mousify", "Ignore : " + motionRequest.getDx() + ", " + motionRequest.getDy());
+                if (object instanceof MotionEvent) {
+                    MotionEvent motionEvent = (MotionEvent) object;
+                    if (MotionHistory.getInstance().shouldIgnoreMove(motionEvent)) {
+                        Log.info("Mousify", "Ignore : " + motionEvent.getDx() + ", " + motionEvent.getDy());
                         return;
                     }
-                    Log.info("Mousify", "Move by: " + motionRequest.getDx() + " , " + motionRequest.getDy());
-                    MotionHistory.getInstance().updateHistory(motionRequest.getDx(), motionRequest.getDy());
-                    //Log.info("Mousify", "Move to: " + MotionHistory.getInstance().getX() + ", " + MotionHistory.getInstance().getY());
-                    MouseRobot.move(MotionHistory.getInstance().getX(), MotionHistory.getInstance().getY());
+                    Log.info("Mousify", "Move by: " + motionEvent.getDx() + " , " + motionEvent.getDy());
+                    MotionHistory.getInstance().updateHistory(motionEvent.getDx(), motionEvent.getDy());
+                    final MouseRobot mouseRobot = MouseRobot.getInstance();
+                    if (mouseRobot != null) {
+                        mouseRobot.move(MotionHistory.getInstance().getX(), MotionHistory.getInstance().getY());
+                    }
+                } else if (object instanceof ClickEvent) {
+                    Log.info("Mousify", "--> Click");
+                    final MouseRobot mouseRobot = MouseRobot.getInstance();
+                    if (mouseRobot != null) {
+                        mouseRobot.leftClick();
+                    }
                 }
             }
 

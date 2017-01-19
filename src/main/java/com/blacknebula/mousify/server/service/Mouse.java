@@ -1,6 +1,7 @@
 package com.blacknebula.mousify.server.service;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.util.Random;
 
 class Mouse {
@@ -52,6 +53,11 @@ class Mouse {
             robot.mouseMove((int) px, (int) py);
             robot.delay(random(speed, speed * 2));
         }
+    }
+
+    static void leftClick(Robot robot) {
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
     private static int random(int min, int max) {

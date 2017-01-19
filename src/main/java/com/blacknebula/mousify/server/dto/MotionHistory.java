@@ -1,5 +1,6 @@
 package com.blacknebula.mousify.server.dto;
 
+import com.blacknebula.mousify.server.event.MotionEvent;
 import com.blacknebula.mousify.server.service.MouseEvent;
 
 /**
@@ -7,8 +8,8 @@ import com.blacknebula.mousify.server.service.MouseEvent;
  */
 
 public class MotionHistory {
-    private static final int Y_THRESHOLD = 20;
-    private static final int X_THRESHOLD = 20;
+    private static final int Y_THRESHOLD = 10;
+    private static final int X_THRESHOLD = 10;
 
     public static MotionHistory motionHistory;
     private int x;
@@ -31,8 +32,8 @@ public class MotionHistory {
         this.y += dy;
     }
 
-    public boolean shouldIgnoreMove(MotionRequest motionRequest) {
-        return Math.abs(motionRequest.getDx()) < X_THRESHOLD && Math.abs(motionRequest.getDy()) < Y_THRESHOLD;
+    public boolean shouldIgnoreMove(MotionEvent motionEvent) {
+        return Math.abs(motionEvent.getDx()) < X_THRESHOLD && Math.abs(motionEvent.getDy()) < Y_THRESHOLD;
     }
 
     public int getX() {

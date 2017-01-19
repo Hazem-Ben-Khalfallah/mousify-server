@@ -1,4 +1,4 @@
-package com.blacknebula.mousify.server.dto;
+package com.blacknebula.mousify.server.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class MotionRequest {
+public class MotionEvent {
     @Getter
     @Setter
     private int dx;
