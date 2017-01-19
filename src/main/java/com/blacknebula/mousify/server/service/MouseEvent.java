@@ -9,15 +9,15 @@ public class MouseEvent {
         this.robot = robot;
     }
 
-    public int getMouseX() {
+    public static int getCurrentMouseX() {
         return MouseInfo.getPointerInfo().getLocation().x;
     }
 
-    public int getMouseY() {
+    public static int getCurrentMouseY() {
         return MouseInfo.getPointerInfo().getLocation().y;
     }
 
-    public void moveMouse(int speed, int destX, int destY, int ranX, int ranY) {
-        Mouse.moveMouse(robot, new Point(getMouseX(), getMouseY()), new Point(destX, destY), speed, ranX, ranY);
+    public void moveMouse(int destX, int destY, int ranX, int ranY, int speed) {
+        Mouse.moveMouse(robot, new Point(getCurrentMouseX(), getCurrentMouseY()), new Point(destX, destY), speed, ranX, ranY);
     }
 }

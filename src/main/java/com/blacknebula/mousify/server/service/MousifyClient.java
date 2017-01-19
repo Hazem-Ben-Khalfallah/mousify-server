@@ -1,6 +1,6 @@
 package com.blacknebula.mousify.server.service;
 
-import com.blacknebula.mousify.server.dto.SomeRequest;
+import com.blacknebula.mousify.server.dto.MotionRequest;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.minlog.Log;
@@ -16,7 +16,7 @@ public class MousifyClient {
     public static void main(String[] args) {
         Client client = new Client();
         Kryo kryo = client.getKryo();
-        kryo.register(SomeRequest.class);
+        kryo.register(MotionRequest.class);
         new Thread(client).start();
         try {
             client.connect(5000, InetAddress.getLocalHost(), MousifyServer.TCP_PORT, MousifyServer.UDP_PORT);
@@ -25,8 +25,7 @@ public class MousifyClient {
         }
 
 
-        SomeRequest request = new SomeRequest();
-        request.text = "Here is the request";
+        final MotionRequest request = new MotionRequest(0, 0);
         client.sendTCP(request);
     }
 }

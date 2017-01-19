@@ -1,6 +1,7 @@
 package com.blacknebula.mousify.server.service;
 
-import com.blacknebula.mousify.server.dto.SomeRequest;
+import com.blacknebula.mousify.server.dto.MotionHistory;
+import com.blacknebula.mousify.server.dto.MotionRequest;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -19,7 +20,7 @@ public class MousifyServer {
     public static void main(String[] args) {
         Server server = new Server();
         Kryo kryo = server.getKryo();
-        kryo.register(SomeRequest.class);
+        kryo.register(MotionRequest.class);
         server.start();
 
         try {
@@ -33,10 +34,15 @@ public class MousifyServer {
         server.addListener(new Listener() {
             @Override
             public void received(Connection connection, Object object) {
-                if (object instanceof SomeRequest) {
-                    SomeRequest someRequest = (SomeRequest) object;
-                    Log.info("Mousify", "Received data: " + someRequest.text);
-                    MouseRobot.test();
+                if (object instanceof MotionRequest) {
+                    MotionRequest motionRequest = (MotionRequest) object;
+                    if (MotionHistory.getInstance().shouldIgnoreMove(motionRequest)) {
+                        Log.info("Mousify", "Ignore : " + motionRequest.getX() + ", " + motionRequest.getY());
+                        return;
+                    }
+                    MotionHistory.getInstance().updateHistory(motionRequest.getX(), motionRequest.getY());
+                    Log.info("Mousify", "Move to: " + motionRequest.getX() + ", " + motionRequest.getY());
+                    MouseRobot.move(motionRequest.getX(), motionRequest.getY());
                 }
             }
 

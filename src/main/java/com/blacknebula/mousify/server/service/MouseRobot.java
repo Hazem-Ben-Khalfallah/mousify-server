@@ -10,15 +10,14 @@ import java.awt.*;
  */
 public class MouseRobot {
     public static void main(String[] args) {
-        test();
+        move(0, 740);
     }
 
-    static void test() {
+    static void move(int x, int y) {
         try {
             final Robot robot = new Robot();
             final MouseEvent mouseEvent = new MouseEvent(robot);
-            mouseEvent.moveMouse(10, 740, 0, 0, 0);
-            Log.info("Mousify", mouseEvent.getMouseX() + ":" + mouseEvent.getMouseY());
+            mouseEvent.moveMouse(x, y, 0, 0, 10);
         } catch (AWTException e) {
             Log.error("Mousify", "Error while Controlling mouse", e);
         }
