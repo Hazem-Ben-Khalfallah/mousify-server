@@ -60,6 +60,11 @@ class Mouse {
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
+    static void rightClick(Robot robot) {
+        robot.mousePress(InputEvent.BUTTON3_MASK);
+        robot.mouseRelease(InputEvent.BUTTON3_MASK);
+    }
+
     private static int random(int min, int max) {
 
         if (min > max) {

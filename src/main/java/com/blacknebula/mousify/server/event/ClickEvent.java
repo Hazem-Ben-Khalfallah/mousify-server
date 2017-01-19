@@ -13,5 +13,5 @@ import lombok.Setter;
 public class ClickEvent {
     @Getter
     @Setter
-    private boolean isDoubleClick;
+    private boolean isLeft;
 }

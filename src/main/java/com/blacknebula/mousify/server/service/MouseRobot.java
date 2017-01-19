@@ -35,6 +35,11 @@ public class MouseRobot {
         mouseEvent.leftClick();
     }
 
+    public void rightClick() {
+        final MouseEvent mouseEvent = new MouseEvent(robot);
+        mouseEvent.rightClick();
+    }
+
     public void move(int x, int y) {
         final MouseEvent mouseEvent = new MouseEvent(robot);
         mouseEvent.moveMouse(x, y, 0, 0, 0);

@@ -24,4 +24,8 @@ public class MouseEvent {
     void leftClick() {
         Mouse.leftClick(robot);
     }
+
+    void rightClick() {
+        Mouse.rightClick(robot);
+    }
 }

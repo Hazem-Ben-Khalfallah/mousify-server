@@ -49,10 +49,15 @@ public class MousifyServer {
                         mouseRobot.move(MotionHistory.getInstance().getX(), MotionHistory.getInstance().getY());
                     }
                 } else if (object instanceof ClickEvent) {
-                    Log.info("Mousify", "--> Click");
+                    final ClickEvent clickEvent = (ClickEvent) object;
+                    Log.info("Mousify", (clickEvent.isLeft() ? "Left" : "Right") + " click");
                     final MouseRobot mouseRobot = MouseRobot.getInstance();
                     if (mouseRobot != null) {
-                        mouseRobot.leftClick();
+                        if (clickEvent.isLeft()) {
+                            mouseRobot.leftClick();
+                        } else {
+                            mouseRobot.rightClick();
+                        }
                     }
                 }
             }
