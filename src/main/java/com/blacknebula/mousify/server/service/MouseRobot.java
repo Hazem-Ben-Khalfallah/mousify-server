@@ -44,6 +44,11 @@ public class MouseRobot {
         final MouseEvent mouseEvent = new MouseEvent(robot);
         mouseEvent.moveMouse(x, y, 0, 0, 0);
     }
+
+    public void scrollWheel(int wheelAmt) {
+        final MouseEvent mouseEvent = new MouseEvent(robot);
+        mouseEvent.scrollWheel(wheelAmt);
+    }
 }
 
 

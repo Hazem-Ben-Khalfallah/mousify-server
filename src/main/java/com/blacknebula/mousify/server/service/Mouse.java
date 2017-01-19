@@ -65,6 +65,11 @@ class Mouse {
         robot.mouseRelease(InputEvent.BUTTON3_MASK);
     }
 
+    static void scrollWheel(Robot robot, int wheelAmt) {
+        robot.mouseWheel(wheelAmt);
+    }
+
+
     private static int random(int min, int max) {
 
         if (min > max) {

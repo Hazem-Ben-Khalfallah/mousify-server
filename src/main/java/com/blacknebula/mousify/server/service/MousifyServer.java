@@ -3,6 +3,7 @@ package com.blacknebula.mousify.server.service;
 import com.blacknebula.mousify.server.dto.MotionHistory;
 import com.blacknebula.mousify.server.event.ClickEvent;
 import com.blacknebula.mousify.server.event.MotionEvent;
+import com.blacknebula.mousify.server.event.ScrollEvent;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -23,6 +24,7 @@ public class MousifyServer {
         Kryo kryo = server.getKryo();
         kryo.register(MotionEvent.class);
         kryo.register(ClickEvent.class);
+        kryo.register(ScrollEvent.class);
         server.start();
 
         try {
@@ -58,6 +60,13 @@ public class MousifyServer {
                         } else {
                             mouseRobot.rightClick();
                         }
+                    }
+                } else if (object instanceof ScrollEvent) {
+                    final ScrollEvent scrollEvent = (ScrollEvent) object;
+                    Log.info("Mousify", "scroll by " + scrollEvent.getAmount());
+                    final MouseRobot mouseRobot = MouseRobot.getInstance();
+                    if (mouseRobot != null) {
+                        mouseRobot.scrollWheel(scrollEvent.getAmount());
                     }
                 }
             }

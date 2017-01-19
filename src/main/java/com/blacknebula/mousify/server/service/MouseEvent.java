@@ -28,4 +28,8 @@ public class MouseEvent {
     void rightClick() {
         Mouse.rightClick(robot);
     }
+
+    void scrollWheel(int wheelAmt) {
+        Mouse.scrollWheel(robot, wheelAmt);
+    }
 }
