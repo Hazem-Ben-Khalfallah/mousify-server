@@ -52,13 +52,19 @@ public class MousifyServer {
                     }
                 } else if (object instanceof ClickEvent) {
                     final ClickEvent clickEvent = (ClickEvent) object;
-                    Log.info("Mousify", (clickEvent.isLeft() ? "Left" : "Right") + " click");
+                    Log.info("Mousify", (clickEvent.isLeft() ? "Left" : "Right") + " " + clickEvent.getAction());
                     final MouseRobot mouseRobot = MouseRobot.getInstance();
                     if (mouseRobot != null) {
                         if (clickEvent.isLeft()) {
-                            mouseRobot.leftClick();
+                            if (ClickEvent.ACTION_CLICK.equals(clickEvent.getAction())) {
+                                mouseRobot.leftButtonClick();
+                            } else if (ClickEvent.ACTION_DOWN.equals(clickEvent.getAction())) {
+                                mouseRobot.leftButtonDown();
+                            } else if (ClickEvent.ACTION_UP.equals(clickEvent.getAction())) {
+                                mouseRobot.leftButtonUp();
+                            }
                         } else {
-                            mouseRobot.rightClick();
+                            mouseRobot.rightButtonClick();
                         }
                     }
                 } else if (object instanceof ScrollEvent) {

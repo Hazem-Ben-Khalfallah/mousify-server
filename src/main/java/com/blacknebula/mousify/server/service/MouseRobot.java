@@ -30,14 +30,24 @@ public class MouseRobot {
         return instance;
     }
 
-    public void leftClick() {
+    public void leftButtonClick() {
         final MouseEvent mouseEvent = new MouseEvent(robot);
-        mouseEvent.leftClick();
+        mouseEvent.leftButtonClick();
     }
 
-    public void rightClick() {
+    public void leftButtonDown() {
         final MouseEvent mouseEvent = new MouseEvent(robot);
-        mouseEvent.rightClick();
+        mouseEvent.leftButtonDown();
+    }
+
+    public void leftButtonUp() {
+        final MouseEvent mouseEvent = new MouseEvent(robot);
+        mouseEvent.leftButtonUp();
+    }
+
+    public void rightButtonClick() {
+        final MouseEvent mouseEvent = new MouseEvent(robot);
+        mouseEvent.rightButtonClick();
     }
 
     public void move(int x, int y) {

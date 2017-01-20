@@ -55,12 +55,20 @@ class Mouse {
         }
     }
 
-    static void leftClick(Robot robot) {
+    static void leftButtonClick(Robot robot) {
         robot.mousePress(InputEvent.BUTTON1_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
-    static void rightClick(Robot robot) {
+    static void leftButtonDown(Robot robot) {
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+    }
+
+    static void leftButtonUp(Robot robot) {
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+    }
+
+    static void rightButtonClick(Robot robot) {
         robot.mousePress(InputEvent.BUTTON3_MASK);
         robot.mouseRelease(InputEvent.BUTTON3_MASK);
     }

@@ -21,12 +21,20 @@ public class MouseEvent {
         Mouse.moveMouse(robot, new Point(getCurrentMouseX(), getCurrentMouseY()), new Point(destX, destY), speed, ranX, ranY);
     }
 
-    void leftClick() {
-        Mouse.leftClick(robot);
+    void leftButtonClick() {
+        Mouse.leftButtonClick(robot);
     }
 
-    void rightClick() {
-        Mouse.rightClick(robot);
+    void leftButtonDown() {
+        Mouse.leftButtonDown(robot);
+    }
+
+    void leftButtonUp() {
+        Mouse.leftButtonUp(robot);
+    }
+
+    void rightButtonClick() {
+        Mouse.rightButtonClick(robot);
     }
 
     void scrollWheel(int wheelAmt) {
