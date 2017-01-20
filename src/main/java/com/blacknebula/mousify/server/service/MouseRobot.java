@@ -1,8 +1,10 @@
 package com.blacknebula.mousify.server.service;
 
-import com.esotericsoftware.minlog.Log;
+import com.blacknebula.mousify.server.utils.Logger;
 
 import java.awt.*;
+
+import static com.blacknebula.mousify.server.utils.Logger.Type.MOUSIFY;
 
 
 /**
@@ -23,7 +25,7 @@ public class MouseRobot {
             try {
                 instance = new MouseRobot(new Robot());
             } catch (AWTException e) {
-                Log.error("Mousify", "Error while Controlling mouse", e);
+                Logger.error(MOUSIFY, "Error while Controlling mouse", e);
                 return null;
             }
         }
