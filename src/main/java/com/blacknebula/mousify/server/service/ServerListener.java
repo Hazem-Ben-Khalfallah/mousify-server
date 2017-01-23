@@ -24,10 +24,9 @@ public class ServerListener extends Listener {
                 return;
             }
             Logger.info(MOUSIFY, "Move by: %s, %s", motionEvent.getDx(), motionEvent.getDy());
-            MotionHistory.getInstance().updateHistory(motionEvent.getDx(), motionEvent.getDy());
             final MouseRobot mouseRobot = MouseRobot.getInstance();
             if (mouseRobot != null) {
-                mouseRobot.move(MotionHistory.getInstance().getX(), MotionHistory.getInstance().getY());
+                mouseRobot.move(motionEvent.getDx(), motionEvent.getDy());
             }
         } else if (object instanceof ClickEvent) {
             final ClickEvent clickEvent = (ClickEvent) object;

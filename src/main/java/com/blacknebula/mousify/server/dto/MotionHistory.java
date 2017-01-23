@@ -27,8 +27,11 @@ public class MotionHistory {
         return motionHistory;
     }
 
-    public void updateHistory(int dx, int dy) {
+    public void incrementX(int dx) {
         this.x += dx;
+    }
+
+    public void incrementY(int dy) {
         this.y += dy;
     }
 
