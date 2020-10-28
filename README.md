@@ -1,3 +1,5 @@
+![mousify-server](https://socialify.git.ci/Hazem-Ben-Khalfallah/mousify-server/image?description=1&descriptionEditable=Control%20your%20PC%20mouse%20from%20your%20Android%20phone!&forks=1&language=1&logo=https%3A%2F%2Fgithub.com%2FHazem-Ben-Khalfallah%2Fmousify-mobile%2Fraw%2Fmaster%2Fapp%2Fsrc%2Fmain%2Fres%2Fmipmap-xxxhdpi%2Fic_launcher.png&owner=1&pattern=Signal&theme=Dark)
+
 # Mousify _server_
 This app enables a user to control his PC mouse via an android phone. This repository contains **server side** (PC) source code.
 
